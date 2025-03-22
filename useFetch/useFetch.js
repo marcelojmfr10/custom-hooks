@@ -4,20 +4,19 @@ const localCache = {
 
 }
 
-
 export const useFetch = (url) => {
-    const [state, setState] =  useState({
+    const [state, setState] = useState({
         data: null,
         isLoading: true,
         hasError: false,
         error: null
     });
 
-    useEffect(() =>{
+    useEffect(() => {
         getFetch();
     }, [url]);
 
-    const setLoadingState = () =>{
+    const setLoadingState = () => {
         setState({
             data: null,
             isLoading: true,
@@ -26,10 +25,10 @@ export const useFetch = (url) => {
         })
     }
 
-    const getFetch = async() => {
+    const getFetch = async () => {
         setLoadingState();
 
-        if (localCache[url]){
+        if (localCache[url]) {
             console.log('usando caché');
             setState({
                 data: localCache[url],
@@ -45,9 +44,9 @@ export const useFetch = (url) => {
         const respo = await fetch(url);
 
         //sleep
-         await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise(resolve => setTimeout(resolve, 1500));
 
-        if (!respo.ok){
+        if (!respo.ok) {
             setState({
                 data: null,
                 isLoading: false,
